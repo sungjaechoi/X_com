@@ -1,5 +1,5 @@
 export default function Default() {
-  return <div>응 안돼</div>;
+  return null;
 }
 
 // import Main from "@/app/(beforeLogin)/_component/Main";
