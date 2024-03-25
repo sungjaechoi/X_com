@@ -9,7 +9,6 @@
   align-items: flex-end;
   flex-direction: column;
   flex-grow: 1;
-  background-color: blanchedalmond;
 }
 
 .leftSection {
@@ -88,13 +87,11 @@
 .main {
   width: 600px;
   height: 200dvh;
-  background-color: aqua;
 }
 
 .rightSection {
   width: 350px;
   height: 100%;
-  background-color: aquamarine;
 }
 
 .search {
