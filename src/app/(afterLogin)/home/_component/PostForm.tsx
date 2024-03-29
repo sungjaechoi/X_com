@@ -1,6 +1,6 @@
 "use client"
 
-import {ChangeEventHandler, FormEventHandler, useRef, useState} from "react";
+import {ChangeEventHandler, FormEventHandler, MouseEventHandler, useRef, useState} from "react";
 //ChangeEventHandler, FormEventHandler 리엑트와 타입스크립트를 함께 사용할떄 이벤트 헨들러 함수에 정확한 이벤트 타입을 지정
 import style from './postForm.module.css';
 
@@ -22,7 +22,7 @@ export default function PostForm() {
     e.preventDefault();
   }
 
-  const onClickButton = () => {
+  const onClickButton: MouseEventHandler<HTMLButtonElement> = () => {
     imageRef.current?.click();
   }
 
