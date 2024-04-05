@@ -7,6 +7,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 //dayjs 한글 플러그인
 import 'dayjs/locale/ko';
 import ActionButtons from './ActionButtons';
+import PostArticle from './PostArticle';
 // import ActionButtons from "@/app/(afterLogin)/_component/ActionButtons";
 
 //dayjs 한글 플러그인
@@ -18,6 +19,7 @@ dayjs.extend(relativeTime)
 
 export default function Post() {
   const target = { //서버에서 가져올 데이터, 일단 더미 데이터로
+    postId: 1,
     User: {
       id: 'elonmusk',
       nickname: 'Elon Musk',
@@ -29,7 +31,7 @@ export default function Post() {
     Images: [],
   }
   return (
-    <article className={style.post}>
+    <PostArticle post={target}>
       <div className={style.postWrapper}>
         <div className={style.postUserSection}>
           <Link href={`/${target.User.id}`} className={style.postUserImage}>
@@ -55,6 +57,6 @@ export default function Post() {
           <ActionButtons />
         </div>
       </div>
-    </article>
+    </PostArticle>
   )
 }
