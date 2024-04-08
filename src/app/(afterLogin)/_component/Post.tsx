@@ -18,7 +18,7 @@ dayjs.locale('ko');
 dayjs.extend(relativeTime)
 
 export default function Post() {
-  const target = { //서버에서 가져올 데이터, 일단 더미 데이터로
+  const target = { //서버에서 가져올 데이터, 일단 더미 데이터로?
     postId: 1,
     User: {
       id: 'elonmusk',
