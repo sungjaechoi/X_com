@@ -2,10 +2,14 @@
 import style from './post.module.css';
 import cx from 'classnames';
 
-export default function ActionButtons() {
+type Props = {
+  white?: boolean
+}
+
+export default function ActionButtons({ white }: Props) {
   //댓글,리포스트,좋아요가 눌렸는지 여부를 나타내는 불리언값 -> 더미데이터
-  const commented = true;
-  const reposted = true;
+  const commented = false;
+  const reposted = false;
   const liked = false;
 
   const onClickComment = () => {}
@@ -14,7 +18,7 @@ export default function ActionButtons() {
 
   return (
     <div className={style.actionButtons}>
-      <div className={cx(style.commentButton, { [style.commented]: commented })}>
+      <div className={cx(style.commentButton, { [style.commented]: commented }, white && style.white)}>
         <button onClick={onClickComment}>
           <svg width={24} viewBox="0 0 24 24" aria-hidden="true">
             <g>
@@ -25,7 +29,7 @@ export default function ActionButtons() {
         </button>
         <div className={style.count}>{1 || ''}</div>
       </div>
-      <div className={cx(style.repostButton, reposted && style.reposted)}>
+      <div className={cx(style.repostButton, reposted && style.reposted, white && style.white)}>
         <button onClick={onClickRepost}>
           <svg width={24} viewBox="0 0 24 24" aria-hidden="true">
             <g>
@@ -36,7 +40,7 @@ export default function ActionButtons() {
         </button>
         <div className={style.count}>{1 || ''}</div>
       </div>
-      <div className={cx([style.heartButton, liked && style.liked])}>
+      <div className={cx([style.heartButton, liked && style.liked, white && style.white])}>
         <button onClick={onClickHeart}>
           <svg width={24} viewBox="0 0 24 24" aria-hidden="true">
             <g>

@@ -11,6 +11,7 @@ export default function Tab() {
   const onClickHot = () => {
     setCurrent('hot');
     router.replace(`/search?q=${searchParams.get('q')}`)
+    console.log(searchParams)
   }
   const onClickNew = () => {
     setCurrent('new');

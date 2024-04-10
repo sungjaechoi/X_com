@@ -22,6 +22,7 @@ type Props = {
 };
 
 export default function Search({ searchParams }: Props) {
+  // console.log('searchParams', searchParams)
   return (
     <main className={style.main}>
       <div className={style.searchTop}>
