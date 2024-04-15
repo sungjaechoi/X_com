@@ -18,8 +18,8 @@ type Props = {
 }
 
 export default function PostImages({post}: Props) {
-  if (!post.Images) return null;
-  if (!post.Images.length) return null;
+  if (!post.Images) return null; // 포스트의 이미지가 없을때
+  if (!post.Images.length) return null; // 포스트의 이미지가 배열이 아니거나 배열의 갯수가 없을떄
   if (post.Images.length === 1) {
     return (
       <Link

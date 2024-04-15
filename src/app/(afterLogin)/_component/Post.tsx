@@ -37,7 +37,9 @@ export default function Post({ noImage }: Props) {
     createdAt: new Date(),
     Images: [] as any[],
   }
-  if (Math.random() > 0.5 && !noImage) {
+  //? noImage의 type이 boolean으로 되어있고 옵셔널이 이기 때문에 noImage가 없는경우 undefined이며
+  //? undefined의 falsy한 값이기 때문에 '!noImage'=== !undefined 와 같고 true가 된다.
+  if (Math.random() > 0.5 && !noImage) { 
     target.Images.push(
       {imageId: 1, link: faker.image.urlLoremFlickr()},
       {imageId: 2, link: faker.image.urlLoremFlickr()},
