@@ -10,6 +10,7 @@ function generateDate() {
   });
 }
 const User = [
+  {id: 'sungjae', nickname: '성재', image: '/yRsRRjGO.jpg'},
   {id: 'elonmusk', nickname: 'Elon Musk', image: '/yRsRRjGO.jpg'},
   {id: 'zerohch0', nickname: '제로초', image: '/5Udwvqim.jpg'},
   {id: 'leoturtle', nickname: '레오', image: faker.image.avatar()},
@@ -19,7 +20,7 @@ const Posts = [];
 export const handlers = [
   http.post('/api/login', () => {
     console.log('로그인');
-    return HttpResponse.json(User[1], {
+    return HttpResponse.json(User[0], {
       headers: {
         'Set-Cookie': 'connect.sid=msw-cookie;HttpOnly;Path=/'
       }

@@ -1,7 +1,7 @@
 
 "use client"
 
-import style from "../photoModal.module.css";
+import style from "./photoModal.module.css";
 import React from "react";
 import {useRouter} from "next/navigation";
 

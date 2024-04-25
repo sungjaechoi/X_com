@@ -1,16 +1,17 @@
 "use server";
 
+import { signIn } from "@/auth";
 import { redirect } from "next/navigation";
 
 export default async function onSubmit(prevState: any, formData: FormData) {
   // formData 검증하고 메세지는 클라이언트 컴포넌트에서 보여준다.
-  if (!formData.get("id")) {
+  if (!formData.get("id") || !(formData.get('id') as string)?.trim()) {
     return { message: "no_id" };
   }
-  if (!formData.get("name")) {
+  if (!formData.get("name") || !(formData.get('name') as string)?.trim()) {
     return { message: "no_name" };
   }
-  if (!formData.get("password")) {
+  if (!formData.get("password") || !(formData.get('password') as string)?.trim()) {
     return { message: "no_password" };
   }
   if (!formData.get("image")) {
@@ -33,15 +34,21 @@ export default async function onSubmit(prevState: any, formData: FormData) {
     if (response.status === 403) {
       return { message: "user_exists" };
     }
-    console.log(response.status);
-    console.log(await response.json())
+    console.log('1.responseStatus',response.status);
+    console.log('2.Response.Json',await response.json())
     shouldRedirect = true;
+    await signIn("credentials", {
+      username: formData.get('id'),
+      password: formData.get('password'),
+      redirect: false,
+    })
   } catch (err) {
     console.error(err);
     shouldRedirect = false;
   }
 
   if (shouldRedirect) {
+    console.log('동작??')
     redirect("/home"); // 리다이렉트는 try/catch문 안에 들어가면 안된다.
   }
 }

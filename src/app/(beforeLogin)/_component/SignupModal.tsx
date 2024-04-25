@@ -63,7 +63,7 @@ export default function SignupModal() {
             </div>
             <div className={style.modalFooter}>
               <button type="submit" className={style.actionButton} disabled={pending}>가입하기</button>
-              <div className={style.error}>{showMessage(state?.message)}</div>
+              <div className={style.error}>{showMessage(state?.message as string)}</div>
             </div>
           </form>
         </div>

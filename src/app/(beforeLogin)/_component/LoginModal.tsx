@@ -1,18 +1,48 @@
 "use client";
 
 import style from '@/app/(beforeLogin)/_component/login.module.css';
-import {useState} from "react";
+import {ChangeEventHandler, FormEventHandler, useState} from "react";
+import {redirect, useRouter} from "next/navigation";
+//? 클라이언트에서는 아래와 같이 사용하며
+import {signIn} from "next-auth/react";
+
+//? 만약 서버인 경우 auth.ts를 사용해야 한다.
+//* import {signIn} from "@/auth";
 
 export default function LoginModal() {
-  const [id, setId] = useState();
-  const [password, setPassword] = useState();
-  const [message, setMessage] = useState();
-  const onSubmit = () => {};
-  const onClickClose = () => {};
+  const [id, setId] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const router = useRouter();
 
-  const onChangeId = () => {};
+  const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+    setMessage('');
+    try {
+      await signIn("credentials", {
+        //signIn에 아래와 같은 3개의 옵션이 있으며 'redirect'는 서버컴포넌트에서 사용할경우 사용하며 
+        //현재는 클라이언트이기 때문에 false로 한다.
+        username: id,
+        password,
+        redirect: false,
+      })
+      router.replace('/home');
+    } catch (err) {
+      console.error(err);
+      setMessage('아이디와 비밀번호가 일치하지 않습니다.');
+    }
+  };
+  const onClickClose = () => {
+    router.back();
+  };
 
-  const onChangePassword = () => {};
+  const onChangeId: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setId(e.target.value);
+  };
+
+  const onChangePassword: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setPassword(e.target.value);
+  };
 
   return (
     <div className={style.modalBackground}>
@@ -20,7 +50,7 @@ export default function LoginModal() {
         <div className={style.modalHeader}>
           <button className={style.closeButton} onClick={onClickClose}>
             <svg width={24} viewBox="0 0 24 24" aria-hidden="true"
-                 className="r-18jsvk2 r-4qtqp9 r-yyyyoo r-z80fyv r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-19wmn03">
+                className="r-18jsvk2 r-4qtqp9 r-yyyyoo r-z80fyv r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-19wmn03">
               <g>
                 <path
                   d="M10.59 12L4.54 5.96l1.42-1.42L12 10.59l6.04-6.05 1.42 1.42L13.41 12l6.05 6.04-1.42 1.42L12 13.41l-6.04 6.05-1.42-1.42L10.59 12z"></path>

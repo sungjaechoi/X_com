@@ -8,9 +8,11 @@ import LogoutButton from "./_component/LogoutButton";
 import TrendSection from "@/app/(afterLogin)/_component/TrendSection";
 import FollowRecommend from "@/app/(afterLogin)/_component/FollowRecommend";
 import RightSearchZone from "./_component/RightSearchZone";
+import { auth } from "@/auth";
 
 type Props = { children: ReactNode, modal : ReactNode }
-export default function AfterLoginLayout({ children, modal }: Props ) {
+export default async function AfterLoginLayout({ children, modal }: Props ) {
+  const session = await auth();
   return (
     <div className={style.container}>
       <header className={style.leftSectionWrapper}>
@@ -21,6 +23,7 @@ export default function AfterLoginLayout({ children, modal }: Props ) {
                 <Image src={ZLogo} alt="z.com로고" width={40} height={40} />
               </div>
             </Link>
+            {session?.user && <>
             <nav>
               <ul>
                 <NavMenu />
@@ -31,6 +34,7 @@ export default function AfterLoginLayout({ children, modal }: Props ) {
               </Link>
             </nav>
             <LogoutButton />
+            </>}
           </div>
         </section>
       </header>
